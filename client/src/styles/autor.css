@@ -1,0 +1,77 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.imePrezime{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.podImePrezime{
+    display: flex;
+    flex-direction: column;
+}
+
+.autorInput{
+    width: 300px;
+}
+
+.buttonYellow{
+    background: #FFEB4D;
+    color: #06111C;
+    font-weight: normal;
+    font-size: medium;
+    border: none;
+    width: 100px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    margin-right: 25px;
+    margin-top: 25px;
+}
+
+.buttonYellow:hover{
+    color: white;
+    cursor: pointer;
+}
+
+.gumbi{
+    display: flex;
+    justify-items: flex-start;
+}
+
+.biggerInput{
+    height: 100px;
+    padding: 0;
+}
+
+.autorPrikaz{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+    border-bottom: 1px solid black;
+    padding: 0 5px;
+}
+
+.autoriPodPrikaz{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.autorPrikaz p{
+    margin-right: 10px;
+}
+
+.autoriGumbi{
+    display: flex;
+    flex-direction: row;
+}

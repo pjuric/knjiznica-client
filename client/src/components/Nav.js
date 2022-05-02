@@ -1,10 +1,15 @@
-export const Nav = () => {
+import "../styles/nav.css"
+
+export default function Nav() {
   return (
-    <div className="">
-      <a href="/">Početna</a>
-      <a href="/">Knjige</a>
-      <a href="/">Autori</a>
-      <a href="/noviautor">Novi Autor</a>
+    <div className="navMain">
+      <img src="/logo.png" alt="logo"/>
+      <div className="subNav">
+        <a href="/">Početna</a>
+        <a href="/knjige">Knjige</a>
+        <a href="/autori">Autori</a>
+        <a href="/korisnici">Korisnici</a>
+      </div>
     </div>
   );
-};
+}

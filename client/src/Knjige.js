@@ -4,7 +4,7 @@ import "./styles/knjiga.css";
 import "./styles/autor.css";
 import axios from "axios";
 
-export default function Home() {
+export default function Knjige() {
   const [knjige, setKnjige] = useState();
   const [loading, setLoading] = useState(true);
   const urlKnjige = "http://localhost:8081/knjige";
@@ -26,9 +26,23 @@ export default function Home() {
         : (
             <div>
               
-              <h2>Najnoviji naslovi</h2>
+              <h2>Pretraži</h2>
+              <input
+                type="text"
+                name="naziv"
+                placeholder="Naziv"
+                className="knjigeInputPretraga"
+              />
+              <div className="gumbi">
+                <button type="submit" className="buttonYellow">
+                  Pretraži
+                </button>
+                <a href="/urediknjigu" className="buttonYellow">
+                  Novi naslov
+                </a>
+              </div>
               <div className="homeKnjigeLayout">
-                {knjige.slice(0, 10).map((knjiga) => (
+                {knjige.map((knjiga) => (
                   <Knjiga
                     key={knjiga._id}
                     coverImageName={knjiga.coverImageName}

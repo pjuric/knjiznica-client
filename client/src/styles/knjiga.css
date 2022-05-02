@@ -1,0 +1,94 @@
+.homeKnjigeLayout{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 25px;
+    margin-top: 50px;
+}
+
+.buttonYellow{
+    background: #FFEB4D;
+    color: #06111C;
+    font-weight: normal;
+    font-size: medium;
+    border: none;
+    width: 100px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    margin-right: 25px;
+    margin-top: 25px;
+}
+
+.knjigeInputPretraga{
+    width: 500px;
+    height: 25px;
+}
+
+.knjigaLayout{
+    height: 300px;
+    width: 225px;
+}
+
+.knjigaLayout img{
+    width: 100%;
+    height: 100%;
+}
+
+.urediObrisiGumbi{
+    display: flex;
+}
+
+.knjgaDetaljiLayout{
+    display: flex;
+}
+
+.knjigaDetaljiDesno{
+    margin-left: 50px;
+    width: 100%;
+}
+
+.knjigaDetaljiAtributi{
+    display: flex;
+    border-bottom: 1px solid black;
+}
+
+.naznačenTekst{
+    font-weight: bold;
+    width: 30%;
+}
+
+.knjigaDetaljiAtributiOpis{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid black;
+}
+
+.urediKnjiguMainLayout{
+    display: flex;
+    justify-content: space-between;
+}
+
+.urediKnjiguInputLayout{
+    display: flex;
+    flex-direction: column;
+}
+
+.urediKnjiguInput{
+    width: 600px;
+    height: 25px;
+    margin-bottom: 25px;
+}
+
+.urediKnjiguSecondLayout{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.urediKnjiguSecondLayout textarea{
+    margin-left: 25px;
+    width: 70%;
+}
