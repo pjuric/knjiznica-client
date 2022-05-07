@@ -28,7 +28,7 @@ const NoviAutor = () => {
     } else {
       setLoading(false);
     }
-  }, [id]);
+  }, [id]); 
 
   const updateime = (e) => {
     setIme(e.target.value);

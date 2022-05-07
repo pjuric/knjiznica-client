@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     row-gap: 25px;
+    column-gap: 25px;
     margin-top: 50px;
 }
 
@@ -43,6 +44,10 @@
 
 .knjgaDetaljiLayout{
     display: flex;
+}
+
+.knjgaDetaljiLayout img{
+    width: 300px;
 }
 
 .knjigaDetaljiDesno{
@@ -91,4 +96,13 @@
 .urediKnjiguSecondLayout textarea{
     margin-left: 25px;
     width: 70%;
+}
+
+.urediKnjiguLabelAndInput{
+    display: flex;
+    justify-content: space-between;
+}
+
+.urediKnjiguLabelAndInput label{
+    margin-right: 10px;
 }

@@ -7,6 +7,7 @@ import "./styles/knjiga.css";
 export default function Autor() {
   const { id } = useParams();
   const [autor, setAutor] = useState();
+  const [knjige, setKnjige] = useState();
   const [loading, setLoading] = useState(true);
   const urlAutor = `http://localhost:8081/autori/${id}`;
 
@@ -15,6 +16,7 @@ export default function Autor() {
     async function fetchData() {
       const [gotAutori] = await axios.all([getAutor()]);
       setAutor(gotAutori.data.autor);
+      setKnjige(gotAutori.data.knjige);
       setLoading(false);
       return gotAutori;
     }
@@ -33,10 +35,20 @@ export default function Autor() {
             <p>{autor.biografija}</p>
           </div>
           <div>
-            <h2>Autorska djela</h2>
-            <div className="homeKnjigeLayout">
-              
-            </div>
+            {knjige.length > 0 && (
+              <div>
+                <h2>Autorska djela</h2>
+                <div className="homeKnjigeLayout">
+                  {knjige.map((knjiga) => (
+                    <Knjiga
+                      key={knjiga._id}
+                      coverImageName={knjiga.coverImageName}
+                      id={knjiga._id}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}

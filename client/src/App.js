@@ -17,6 +17,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/knjige" element={<Knjige />}></Route>
+        <Route path="/knjige/:naziv" element={<Knjige />}></Route>
         <Route path="/knjigadetalji/:id" element={<Knjiga />}></Route>
         <Route path="/urediknjigu" element={<Urediknjigu />}></Route>
         <Route path="/urediknjigu/:id" element={<Urediknjigu />}></Route>

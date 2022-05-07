@@ -25,7 +25,7 @@ export default function Knjiga() {
         "Učitavanje"
       ) : (
         <div>
-          <h2>Naziv</h2>
+          <h2>{knjiga.naziv}</h2>
           <div className="knjgaDetaljiLayout">
             <div>
               <img src={`/knjige/${knjiga.coverImageName}`} alt="knjiga"/>
@@ -39,10 +39,6 @@ export default function Knjiga() {
               </div>
             </div>
             <div className="knjigaDetaljiDesno">
-              {/* <div className="knjigaDetaljiAtributi">
-                <p className="naznačenTekst">Autor</p>
-                <p className="">{knjiga.autor}</p>
-              </div> */}
               <div className="knjigaDetaljiAtributi">
                 <p className="naznačenTekst">Žanr</p>
                 <p className="">{knjiga.zanr}</p>
