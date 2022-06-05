@@ -1,4 +1,4 @@
-.homeKnjigeLayout{
+.homeKnjigeLayout {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     row-gap: 25px;
@@ -6,7 +6,7 @@
     margin-top: 50px;
 }
 
-.buttonYellow{
+.buttonYellow {
     background: #FFEB4D;
     color: #06111C;
     font-weight: normal;
@@ -23,86 +23,102 @@
     margin-top: 25px;
 }
 
-.knjigeInputPretraga{
+.knjigeInputPretraga {
     width: 500px;
     height: 25px;
 }
 
-.knjigaLayout{
+.knjigaLayout {
     height: 300px;
     width: 225px;
 }
 
-.knjigaLayout img{
+.knjigaLayout img {
     width: 100%;
     height: 100%;
 }
 
-.urediObrisiGumbi{
+.urediObrisiGumbi {
     display: flex;
 }
 
-.knjgaDetaljiLayout{
+.knjgaDetaljiLayout {
     display: flex;
 }
 
-.knjgaDetaljiLayout img{
+.knjgaDetaljiLayout img {
     width: 300px;
 }
 
-.knjigaDetaljiDesno{
+.knjigaDetaljiDesno {
     margin-left: 50px;
     width: 100%;
 }
 
-.knjigaDetaljiAtributi{
+.knjigaDetaljiAtributi {
     display: flex;
     border-bottom: 1px solid black;
 }
 
-.naznačenTekst{
+.naznačenTekst {
     font-weight: bold;
     width: 30%;
 }
 
-.knjigaDetaljiAtributiOpis{
+.knjigaDetaljiAtributiOpis {
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid black;
 }
 
-.urediKnjiguMainLayout{
+.urediKnjiguMainLayout {
     display: flex;
     justify-content: space-between;
 }
 
-.urediKnjiguInputLayout{
+.urediKnjiguInputLayout {
     display: flex;
     flex-direction: column;
 }
 
-.urediKnjiguInput{
+.urediKnjiguInput {
     width: 600px;
     height: 25px;
     margin-bottom: 25px;
 }
 
-.urediKnjiguSecondLayout{
+.urediKnjiguSecondLayout {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.urediKnjiguSecondLayout textarea{
+.urediKnjiguSecondLayout textarea {
     margin-left: 25px;
     width: 70%;
 }
 
-.urediKnjiguLabelAndInput{
+.urediKnjiguLabelAndInput {
     display: flex;
     justify-content: space-between;
 }
 
-.urediKnjiguLabelAndInput label{
+.urediKnjiguLabelAndInput label {
     margin-right: 10px;
+}
+
+.knjigaSlika {
+    overflow: hidden;
+    inset: 0;
+    width: 100%;
+    max-height: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    opacity: 0.95;
+    transition: all 200ms ease-in-out;
+}
+
+.knjigaSlika:hover {
+    opacity: 1;
+    transform: scale(1.05);
 }

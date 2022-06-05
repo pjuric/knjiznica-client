@@ -2,17 +2,29 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
+import { decodeToken } from "react-jwt";
 import "./styles/autor.css";
+import Home from "./Home";
 
 const NoviAutor = () => {
+
+  const navigate = useNavigate();
+  if (!localStorage.token) {
+    navigate("/login");
+  }
+
   const [ime, setIme] = useState("");
   const [prezime, setPrezime] = useState("");
   const [biografija, setBiografija] = useState("");
+  const [user, setUser] = useState();
+  const [token, setToken] = useState();
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
-  const navigate = useNavigate();
+  
 
   useEffect(() => {
+    setToken(localStorage.getItem("token"));
+    setUser(decodeToken(token));
     if (id) {
       const urlAutor = `http://localhost:8081/autori/${id}`;
       const getAutor = () => axios.get(urlAutor);
@@ -28,7 +40,7 @@ const NoviAutor = () => {
     } else {
       setLoading(false);
     }
-  }, [id]); 
+  }, [id, token]);
 
   const updateime = (e) => {
     setIme(e.target.value);
@@ -78,56 +90,67 @@ const NoviAutor = () => {
     <div>
       {loading ? (
         "Učitavanje"
+      ) : !user?.admin ? (
+        <Home />
       ) : (
         <div>
-          <h2>Novi autor</h2>
+          {id ? (
+            <h2 className="h2">
+              {ime} {prezime}
+            </h2>
+          ) : (
+            <h2>Novi autor</h2>
+          )}
           <form
             onSubmit={handleSubmit}
             action="http://localhost:8081/autori"
             method="POST"
             className="form"
           >
-            <div className="imePrezime">
-              <div className="podImePrezime">
-                <label>Ime</label>
-                <input
-                  type="text"
-                  name="ime"
-                  onChange={updateime}
-                  value={ime}
-                  className="autorInput"
-                />
-              </div>
-              <div className="podImePrezime">
-                <label>Prezime</label>
-                <input
-                  type="text"
-                  name="prezime"
-                  onChange={updateprezime}
-                  value={prezime}
-                  className="autorInput"
-                />
-              </div>
+            <div className="input-group">
+              <span className="input-group-text">Ime i prezime</span>
+              <input
+                type="text"
+                name="ime"
+                onChange={updateime}
+                value={ime}
+                aria-label="Ime"
+                className="form-control"
+                placeholder="Ime"
+              />
+              <input
+                type="text"
+                name="prezime"
+                onChange={updateprezime}
+                value={prezime}
+                aria-label="Prezime"
+                className="form-control"
+                placeholder="Prezime"
+              />
             </div>
-            <label>Biografija</label>
-            <textarea
-              cols="40"
-              rows="5"
-              name="biografija"
-              onChange={updatebiografija}
-              value={biografija}
-              className="biggerInput"
-            ></textarea>
-            <div className="gumbi">
-              <button type="submit" className="buttonYellow">
+            <div className="input-group mt-4">
+              <span className="input-group-text">Biografija</span>
+              <textarea
+                className="form-control"
+                aria-label="With textarea"
+                cols="40"
+                rows="5"
+                name="biografija"
+                onChange={updatebiografija}
+                value={biografija}
+                placeholder="Biografija"
+              ></textarea>
+            </div>
+            <div className="mt-4">
+              <button type="submit" className="btn btn-warning px-4 me-4">
                 Spremi
               </button>
               {id && (
-                <button className="buttonYellow" onClick={handleObrisi}>
+                <button className="btn btn-danger px-4 me-4" onClick={handleObrisi}>
                   Obriši
                 </button>
               )}
-              <a href="/autori" className="buttonYellow">
+              <a href="/autori" className="btn btn-secondary px-4">
                 Prekid
               </a>
             </div>

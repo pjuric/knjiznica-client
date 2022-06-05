@@ -4,20 +4,27 @@ import "./styles/knjiga.css";
 import "./styles/autor.css";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { decodeToken } from "react-jwt";
 
 export default function Knjige() {
-  const { naziv } = useParams();
   const navigate = useNavigate();
+  if (!localStorage.token) {
+    navigate("login");
+  }
+
+  const { naziv } = useParams();
   const [knjige, setKnjige] = useState();
+  const [user, setUser] = useState();
+  const [token, setToken] = useState();
   const [pretraga, setPretraga] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let urlKnjige = "";
-    if(naziv){
-      urlKnjige = `http://localhost:8081/knjige/pretraga/${naziv}`
-    }else{
-      urlKnjige = "http://localhost:8081/knjige"
+    if (naziv) {
+      urlKnjige = `http://localhost:8081/knjige/pretraga/${naziv}`;
+    } else {
+      urlKnjige = "http://localhost:8081/knjige";
     }
     const getKnjige = () => axios.get(urlKnjige);
     async function fetchData() {
@@ -27,7 +34,9 @@ export default function Knjige() {
       return gotKnjige;
     }
     fetchData();
-  },[naziv]);
+    setToken(localStorage.getItem("token"));
+    setUser(decodeToken(token));
+  }, [naziv, token]);
 
   const updateNaziv = (e) => {
     setPretraga(e.target.value);
@@ -37,37 +46,57 @@ export default function Knjige() {
     e.preventDefault();
     navigate(`/knjige/${pretraga}`);
   }
-  
+
   return (
     <div>
       {loading ? (
         "Učitavanje"
       ) : (
         <div>
-          <h2>Pretraži</h2>
+          <h2 className="h2 border-bottom pb-2">Pretraži</h2>
           <i>Ukupno {knjige.length} naslova</i>
           <br />
           <br />
-          {naziv && knjige.length<1 && <h2>Nema raspoloživih naslova</h2>}
-          <form onSubmit={handleSubmit} method="GET">
-            <input
-              type="text"
-              name="naziv"
-              onChange={updateNaziv}
-              placeholder="Naziv"
-              className="knjigeInputPretraga"
-            />
-            <div className="gumbi">
-              <button type="submit" className="buttonYellow">
+          {naziv && knjige.length < 1 && <h2>Nema raspoloživih naslova</h2>}
+          <form className="" onSubmit={handleSubmit} method="GET">
+            <div className="input-group mb-3 w-50">
+              <input
+                type="text"
+                name="naziv"
+                onChange={updateNaziv}
+                placeholder="Naziv"
+                className="form-control"
+                aria-label="Naslov"
+                aria-describedby="button-addon2"
+              />
+              <button
+                className="btn btn-info"
+                type="submit"
+                id="button-addon2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-search m-1"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
                 Pretraži
               </button>
-              <a href="/urediknjigu" className="buttonYellow">
-                Novi naslov
-              </a>
+            </div>
+            <div className="gumbi">
+              {user.admin === true && (
+                <a href="/urediknjigu" className="btn btn-success">
+                  Novi naslov
+                </a>
+              )}
             </div>
           </form>
 
-          <div className="homeKnjigeLayout">
+          <div className="row">
             {knjige.map((knjiga) => (
               <Knjiga
                 key={knjiga._id}

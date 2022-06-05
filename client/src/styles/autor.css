@@ -16,6 +16,11 @@
     flex-direction: column;
 }
 
+.podCheckbox{
+    display: flex;
+    flex-direction: row;
+}
+
 .autorInput{
     width: 300px;
 }
@@ -74,4 +79,8 @@
 .autoriGumbi{
     display: flex;
     flex-direction: row;
+}
+
+.checkboxContainer{
+    display: flex;
 }

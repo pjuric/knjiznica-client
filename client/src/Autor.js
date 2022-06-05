@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Knjiga from "./components/Knjiga";
 import "./styles/knjiga.css";
 
@@ -10,6 +10,11 @@ export default function Autor() {
   const [knjige, setKnjige] = useState();
   const [loading, setLoading] = useState(true);
   const urlAutor = `http://localhost:8081/autori/${id}`;
+  const navigate = useNavigate();
+
+  if (!localStorage.token) {
+    navigate("/login");
+  }
 
   useEffect(() => {
     const getAutor = () => axios.get(urlAutor);
@@ -26,6 +31,8 @@ export default function Autor() {
     <div>
       {loading ? (
         "Učitavanje"
+      ) : !autor ? (
+        <h1>404</h1>
       ) : (
         <div>
           <h2>
